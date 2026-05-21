@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Smart School</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins', sans-serif;
+    }
+
+    body{
+      background: linear-gradient(135deg,#dbeafe,#f5d0fe,#fce7f3);
+      color:#1e293b;
+      min-height:100vh;
+    }
+
+    header{
+      padding:40px 8%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    .logo{
+      font-size:2rem;
+      font-weight:700;
+      color:#4f46e5;
+    }
+
+    nav a{
+      text-decoration:none;
+      margin-left:20px;
+      color:#334155;
+      font-weight:500;
+      transition:0.3s;
+    }
+
+    nav a:hover{
+      color:#7c3aed;
+    }
+
+    .hero{
+      padding:60px 8%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:40px;
+    }
+
+    .hero-text{
+      flex:1;
+      min-width:280px;
+    }
+
+    .hero-text h1{
+      font-size:3.5rem;
+      line-height:1.1;
+      margin-bottom:20px;
+    }
+
+    .hero-text span{
+      color:#7c3aed;
+    }
+
+    .hero-text p{
+      font-size:1.1rem;
+      margin-bottom:30px;
+      color:#475569;
+    }
+
+    .btn{
+      padding:14px 28px;
+      background:#7c3aed;
+      color:white;
+      border:none;
+      border-radius:12px;
+      cursor:pointer;
+      font-size:1rem;
+      transition:0.3s;
+    }
+
+    .btn:hover{
+      background:#5b21b6;
+      transform:translateY(-2px);
+    }
+
+    .hero-image{
+      flex:1;
+      min-width:280px;
+      text-align:center;
+    }
+
+    .hero-image img{
+      width:90%;
+      max-width:450px;
+    }
+
+    section{
+      padding:60px 8%;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:40px;
+    }
+
+    .section-title h2{
+      font-size:2.3rem;
+      color:#4f46e5;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:25px;
+    }
+
+    .card{
+      background:rgba(255,255,255,0.75);
+      backdrop-filter:blur(10px);
+      border-radius:20px;
+      padding:25px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.08);
+      transition:0.3s;
+    }
+
+    .card:hover{
+      transform:translateY(-5px);
+    }
+
+    .card h3{
+      margin-bottom:15px;
+      color:#7c3aed;
+    }
+
+    .planner input,
+    .planner textarea,
+    .planner button{
+      width:100%;
+      margin-top:10px;
+      padding:12px;
+      border-radius:10px;
+      border:none;
+      outline:none;
+    }
+
+    .planner button{
+      background:#7c3aed;
+      color:white;
+      cursor:pointer;
+      font-weight:600;
+    }
+
+    .task-list{
+      margin-top:20px;
+    }
+
+    .task{
+      background:#ede9fe;
+      padding:12px;
+      border-radius:10px;
+      margin-top:10px;
+    }
+
+    .countdown{
+      text-align:center;
+    }
+
+    .countdown-box{
+      margin-top:20px;
+      font-size:2rem;
+      font-weight:700;
+      color:#7c3aed;
+    }
+
+    .resources ul{
+      list-style:none;
+    }
+
+    .resources li{
+      margin-bottom:15px;
+      background:#ede9fe;
+      padding:15px;
+      border-radius:12px;
+    }
+
+    .resources a{
+      text-decoration:none;
+      color:#4f46e5;
+      font-weight:600;
+    }
+
+    footer{
+      text-align:center;
+      padding:30px;
+      color:#475569;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:20px;
+    }
+
+    table th,
+    table td{
+      padding:12px;
+      text-align:center;
+      border:1px solid #ddd;
+    }
+
+    table th{
+      background:#7c3aed;
+      color:white;
+    }
+
+    table td{
+      background:white;
+    }
+
+    @media(max-width:768px){
+      .hero-text h1{
+        font-size:2.5rem;
+      }
+
+      nav{
+        margin-top:20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">📚 My Smart School</div>
+
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#planner">Planner</a>
+      <a href="#countdown">Countdown</a>
+      <a href="#resources">Resources</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Welcome to <span>My Smart School</span></h1>
+
+      <p>
+        A modern student website designed to help learners stay organized,
+        productive, and prepared for success.
+      </p>
+
+      <button class="btn">Explore Features</button>
+    </div>
+
+    <div class="hero-image">
+      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png" alt="Student">
+    </div>
+  </section>
+
+  <section id="features">
+    <div class="section-title">
+      <h2>Smart Features</h2>
+    </div>
+
+    <div class="cards">
+
+      <div class="card">
+        <h3>📅 Timetable</h3>
+
+        <table>
+          <tr>
+            <th>Day</th>
+            <th>Subject</th>
+          </tr>
+
+          <tr>
+            <td>Monday</td>
+            <td>Mathematics</td>
+          </tr>
+
+          <tr>
+            <td>Tuesday</td>
+            <td>Science</td>
+          </tr>
+
+          <tr>
+            <td>Wednesday</td>
+            <td>English</td>
+          </tr>
+
+          <tr>
+            <td>Thursday</td>
+            <td>History</td>
+          </tr>
+
+          <tr>
+            <td>Friday</td>
+            <td>ICT</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="card">
+        <h3>📝 Homework Planner</h3>
+
+        <p>
+          Organize assignments and keep track of school tasks easily.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>⏰ Exam Countdown</h3>
+
+        <p>
+          Stay motivated with a live countdown timer for important exams.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="planner">
+
+    <div class="section-title">
+      <h2>Homework Planner</h2>
+    </div>
+
+    <div class="card planner">
+
+      <input type="text" id="taskInput" placeholder="Enter homework task">
+
+      <textarea id="taskDetails" rows="4" placeholder="Task details"></textarea>
+
+      <button onclick="addTask()">Add Homework</button>
+
+      <div class="task-list" id="taskList"></div>
+
+    </div>
+
+  </section>
+
+  <section id="countdown">
+
+    <div class="section-title">
+      <h2>Exam Countdown</h2>
+    </div>
+
+    <div class="card countdown">
+
+      <p>Final Exams Begin In:</p>
+
+      <div class="countdown-box" id="timer">
+        Loading...
+      </div>
+
+    </div>
+
+  </section>
+
+  <section id="resources">
+
+    <div class="section-title">
+      <h2>Helpful Student Resources</h2>
+    </div>
+
+    <div class="card resources">
+
+      <ul>
+        <li>
+          📘
+          <a href="https://www.khanacademy.org/" target="_blank">
+            Khan Academy
+          </a>
+          — Free learning videos and exercises.
+        </li>
+
+        <li>
+          📖
+          <a href="https://quizlet.com/" target="_blank">
+            Quizlet
+          </a>
+          — Flashcards and study tools.
+        </li>
+
+        <li>
+          💻
+          <a href="https://www.w3schools.com/" target="_blank">
+            W3Schools
+          </a>
+          — Learn coding and web development.
+        </li>
+
+        <li>
+          🔬
+          <a href="https://www.nationalgeographic.com/" target="_blank">
+            National Geographic
+          </a>
+          — Science and geography resources.
+        </li>
+      </ul>
+
+    </div>
+
+  </section>
+
+  <footer>
+    © 2026 My Smart School | Designed for School Competition 🌟
+  </footer>
+
+  <script>
+
+    function addTask(){
+
+      const taskInput = document.getElementById("taskInput");
+      const taskDetails = document.getElementById("taskDetails");
+      const taskList = document.getElementById("taskList");
+
+      if(taskInput.value === ""){
+        alert("Please enter a homework task.");
+        return;
+      }
+
+      const task = document.createElement("div");
+      task.classList.add("task");
+
+      task.innerHTML = `
+        <strong>${taskInput.value}</strong>
+        <p>${taskDetails.value}</p>
+      `;
+
+      taskList.appendChild(task);
+
+      taskInput.value = "";
+      taskDetails.value = "";
+    }
+
+    // EXAM COUNTDOWN
+
+    const examDate = new Date("December 1, 2026 08:00:00").getTime();
+
+    const timer = setInterval(function(){
+
+      const now = new Date().getTime();
+      const distance = examDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+      document.getElementById("timer").innerHTML =
+        days + " Days " + hours + " Hours " + minutes + " Minutes";
+
+      if(distance < 0){
+        clearInterval(timer);
+        document.getElementById("timer").innerHTML = "EXAMS HAVE STARTED!";
+      }
+
+    }, 1000);
+
+  </script>
+
+</body>
+</html>
