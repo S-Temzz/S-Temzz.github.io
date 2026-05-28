@@ -2,43 +2,9 @@ import {
   collection,
   addDoc,
   getDocs
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-const {
-  initializeApp,
-  getFirestore,
-  getAuth,
-  signInAnonymously
-} = window.firebaseModules;
-
-// YOUR FIREBASE CONFIG
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-
-// Firestore
-const db = getFirestore(app);
-
-// Authentication
-const auth = getAuth(app);
-
-// Anonymous Login
-signInAnonymously(auth)
-  .then(() => {
-    console.log("User signed in anonymously");
-    loadTasks();
-  })
-  .catch((error) => {
-    console.error(error);
-  });
+import { db } from "./firebase.js";
 
 // ADD TASK
 window.addTask = async function () {
@@ -66,8 +32,8 @@ window.addTask = async function () {
     task.classList.add("task");
 
     task.innerHTML = `
-      <strong>${taskInput.value}</strong>
-      <p>${taskDetails.value}</p>
+      <strong>${escapeHtml(taskInput.value)}</strong>
+      <p>${escapeHtml(taskDetails.value)}</p>
     `;
 
     taskList.appendChild(task);
@@ -78,33 +44,53 @@ window.addTask = async function () {
 
   } catch (error) {
     console.error("Error adding task:", error);
+    alert("Error saving task. Please try again.");
   }
 };
 
-// LOAD TASKS
+// LOAD TASKS FROM FIREBASE
 async function loadTasks() {
 
   const taskList = document.getElementById("taskList");
 
+  if (!taskList) return;
+
   taskList.innerHTML = "";
 
-  const querySnapshot = await getDocs(
-    collection(db, "homeworkTasks")
-  );
+  try {
+    const querySnapshot = await getDocs(
+      collection(db, "homeworkTasks")
+    );
 
-  querySnapshot.forEach((doc) => {
+    querySnapshot.forEach((doc) => {
 
-    const data = doc.data();
+      const data = doc.data();
 
-    const task = document.createElement("div");
-    task.classList.add("task");
+      const task = document.createElement("div");
+      task.classList.add("task");
 
-    task.innerHTML = `
-      <strong>${data.title}</strong>
-      <p>${data.details}</p>
-    `;
+      task.innerHTML = `
+        <strong>${escapeHtml(data.title)}</strong>
+        <p>${escapeHtml(data.details || "")}</p>
+      `;
 
-    taskList.appendChild(task);
+      taskList.appendChild(task);
 
-  });
+    });
+  } catch (error) {
+    console.error("Error loading tasks:", error);
+  }
 }
+
+// Helper function to escape HTML and prevent XSS
+function escapeHtml(text) {
+  if (!text) return "";
+  const div = document.createElement("div");
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+// Load tasks when page loads
+document.addEventListener("DOMContentLoaded", () => {
+  loadTasks();
+});
