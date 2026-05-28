@@ -354,6 +354,43 @@
 
   <section id="countdown">
 
+  <div class="section-title">
+    <h2>Exam Countdown</h2>
+  </div>
+
+  <div class="card countdown">
+
+    <p>Select Your Exam Date & Time:</p>
+
+    <input 
+      type="datetime-local" 
+      id="examDateInput"
+      style="
+        padding:12px;
+        border:none;
+        border-radius:10px;
+        margin-top:20px;
+        width:100%;
+        max-width:350px;
+      "
+    >
+
+    <button 
+      class="btn"
+      onclick="setExamDate()"
+      style="margin-top:20px;"
+    >
+      Start Countdown
+    </button>
+
+    <div class="countdown-box" id="timer">
+      No exam date selected
+    </div>
+
+  </div>
+
+</section>
+
     <div class="section-title">
       <h2>Exam Countdown</h2>
     </div>
@@ -449,26 +486,81 @@
 
     // EXAM COUNTDOWN
 
-    const examDate = new Date("December 1, 2026 08:00:00").getTime();
+    let timerInterval;
 
-    const timer = setInterval(function(){
+function setExamDate() {
 
-      const now = new Date().getTime();
-      const distance = examDate - now;
+  const input = document.getElementById("examDateInput").value;
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  if (!input) {
+    alert("Please select an exam date.");
+    return;
+  }
+
+  // Save selected date
+  localStorage.setItem("examDate", input);
+
+  startCountdown(input);
+}
+
+function startCountdown(dateValue) {
+
+  clearInterval(timerInterval);
+
+  const examDate = new Date(dateValue).getTime();
+
+  timerInterval = setInterval(function () {
+
+    const now = new Date().getTime();
+
+    const distance = examDate - now;
+
+    if (distance < 0) {
+
+      clearInterval(timerInterval);
 
       document.getElementById("timer").innerHTML =
-        days + " Days " + hours + " Hours " + minutes + " Minutes";
+        "🎉 EXAMS HAVE STARTED!";
 
-      if(distance < 0){
-        clearInterval(timer);
-        document.getElementById("timer").innerHTML = "EXAMS HAVE STARTED!";
-      }
+      return;
+    }
 
-    }, 1000);
+    const days = Math.floor(
+      distance / (1000 * 60 * 60 * 24)
+    );
+
+    const hours = Math.floor(
+      (distance % (1000 * 60 * 60 * 24)) /
+      (1000 * 60 * 60)
+    );
+
+    const minutes = Math.floor(
+      (distance % (1000 * 60 * 60)) /
+      (1000 * 60)
+    );
+
+    const seconds = Math.floor(
+      (distance % (1000 * 60)) / 1000
+    );
+
+    document.getElementById("timer").innerHTML =
+      `${days} Days ${hours} Hours ${minutes} Minutes ${seconds} Seconds`;
+
+  }, 1000);
+}
+
+// LOAD SAVED DATE WHEN PAGE OPENS
+window.onload = function () {
+
+  const savedDate = localStorage.getItem("examDate");
+
+  if (savedDate) {
+
+    document.getElementById("examDateInput").value = savedDate;
+
+    startCountdown(savedDate);
+  }
+};
 
   </script>
 <script type="module">
