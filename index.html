@@ -2,180 +2,619 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mazoe Orange Crush Ad</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Smart School</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
     *{
       margin:0;
       padding:0;
       box-sizing:border-box;
-      font-family: Arial, sans-serif;
+      font-family:'Poppins', sans-serif;
     }
 
     body{
-      background: linear-gradient(135deg, #ff7b00, #ffb347);
-      height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      overflow:hidden;
+      background: linear-gradient(135deg,#dbeafe,#f5d0fe,#fce7f3);
+      color:#1e293b;
+      min-height:100vh;
     }
 
-    .ad-container{
-      width: 900px;
-      height: 500px;
-      background: rgba(255,255,255,0.12);
-      backdrop-filter: blur(10px);
-      border-radius: 25px;
+    header{
+      padding:40px 8%;
       display:flex;
-      align-items:center;
       justify-content:space-between;
-      padding:50px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.25);
-      position:relative;
+      align-items:center;
+      flex-wrap:wrap;
     }
 
-    .text-section{
-      width:50%;
-      color:white;
-      z-index:2;
+    .logo{
+      font-size:2rem;
+      font-weight:700;
+      color:#4f46e5;
     }
 
-    .brand{
-      font-size:22px;
-      font-weight:bold;
-      letter-spacing:2px;
-      margin-bottom:10px;
+    nav a{
+      text-decoration:none;
+      margin-left:20px;
+      color:#334155;
+      font-weight:500;
+      transition:0.3s;
     }
 
-    h1{
-      font-size:64px;
-      line-height:1;
+    nav a:hover{
+      color:#7c3aed;
+    }
+
+    .hero{
+      padding:60px 8%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:40px;
+    }
+
+    .hero-text{
+      flex:1;
+      min-width:280px;
+    }
+
+    .hero-text h1{
+      font-size:3.5rem;
+      line-height:1.1;
       margin-bottom:20px;
-      text-transform:uppercase;
     }
 
-    .tagline{
-      font-size:22px;
+    .hero-text span{
+      color:#7c3aed;
+    }
+
+    .hero-text p{
+      font-size:1.1rem;
       margin-bottom:30px;
-      color:#fff8e8;
+      color:#475569;
     }
 
     .btn{
-      display:inline-block;
-      padding:15px 35px;
-      background:white;
-      color:#ff7b00;
-      text-decoration:none;
-      border-radius:40px;
-      font-weight:bold;
-      transition:0.3s ease;
+      padding:14px 28px;
+      background:#7c3aed;
+      color:white;
+      border:none;
+      border-radius:12px;
+      cursor:pointer;
+      font-size:1rem;
+      transition:0.3s;
     }
 
     .btn:hover{
-      background:#ffe0b3;
-      transform:scale(1.05);
+      background:#5b21b6;
+      transform:translateY(-2px);
     }
 
-    .image-section{
-      width:45%;
-      position:relative;
+    .hero-image{
+      flex:1;
+      min-width:280px;
+      text-align:center;
+    }
+
+    .hero-image img{
+      width:90%;
+      max-width:450px;
+    }
+
+    section{
+      padding:60px 8%;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:40px;
+    }
+
+    .section-title h2{
+      font-size:2.3rem;
+      color:#4f46e5;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:25px;
+    }
+
+    .card{
+      background:rgba(255,255,255,0.75);
+      backdrop-filter:blur(10px);
+      border-radius:20px;
+      padding:25px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.08);
+      transition:0.3s;
+    }
+
+    .card:hover{
+      transform:translateY(-5px);
+    }
+
+    .card h3{
+      margin-bottom:15px;
+      color:#7c3aed;
+    }
+
+    .planner input,
+    .planner textarea,
+    .planner button{
+      width:100%;
+      margin-top:10px;
+      padding:12px;
+      border-radius:10px;
+      border:none;
+      outline:none;
+    }
+
+    .planner button{
+      background:#7c3aed;
+      color:white;
+      cursor:pointer;
+      font-weight:600;
+    }
+
+    .task-list{
+      margin-top:20px;
+    }
+
+    .task{
+      background:#ede9fe;
+      padding:12px;
+      border-radius:10px;
+      margin-top:10px;
+    }
+
+    .countdown{
+      text-align:center;
+    }
+
+    .countdown-box{
+      margin-top:20px;
+      font-size:2rem;
+      font-weight:700;
+      color:#7c3aed;
+    }
+
+    .date-picker{
+      margin-top:20px;
+      padding:20px;
+      background:#f1f5f9;
+      border-radius:16px;
+    }
+
+    .date-picker h4{
+      margin-bottom:15px;
+      color:#4f46e5;
+    }
+
+    .datetime-input-group{
       display:flex;
+      gap:15px;
+      flex-wrap:wrap;
       justify-content:center;
-      align-items:center;
+      margin-bottom:15px;
     }
 
-    .bottle{
-      width:260px;
-      animation: float 3s ease-in-out infinite;
-      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.35));
+    .datetime-input-group input{
+      padding:12px 16px;
+      border-radius:10px;
+      border:1px solid #cbd5e1;
+      font-size:1rem;
+      outline:none;
     }
 
-    .orange{
-      position:absolute;
-      width:120px;
-      opacity:0.9;
-      animation: spin 10s linear infinite;
+    .set-exam-btn{
+      background:#4f46e5;
+      color:white;
+      padding:12px 24px;
+      border:none;
+      border-radius:10px;
+      cursor:pointer;
+      font-weight:600;
+      transition:0.3s;
     }
 
-    .orange1{
-      top:-20px;
-      right:20px;
+    .set-exam-btn:hover{
+      background:#7c3aed;
+      transform:translateY(-2px);
     }
 
-    .orange2{
-      bottom:-30px;
-      left:0;
+    .exam-info{
+      margin-top:15px;
+      font-size:1rem;
+      color:#475569;
     }
 
-    @keyframes float{
-      0%,100%{
-        transform: translateY(0);
+    .resources ul{
+      list-style:none;
+    }
+
+    .resources li{
+      margin-bottom:15px;
+      background:#ede9fe;
+      padding:15px;
+      border-radius:12px;
+    }
+
+    .resources a{
+      text-decoration:none;
+      color:#4f46e5;
+      font-weight:600;
+    }
+
+    footer{
+      text-align:center;
+      padding:30px;
+      color:#475569;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:20px;
+    }
+
+    table th,
+    table td{
+      padding:12px;
+      text-align:center;
+      border:1px solid #ddd;
+    }
+
+    table th{
+      background:#7c3aed;
+      color:white;
+    }
+
+    table td{
+      background:white;
+    }
+
+    @media(max-width:768px){
+      .hero-text h1{
+        font-size:2.5rem;
       }
-      50%{
-        transform: translateY(-15px);
+
+      nav{
+        margin-top:20px;
+      }
+
+      .datetime-input-group input{
+        width:100%;
       }
     }
-
-    @keyframes spin{
-      from{
-        transform: rotate(0deg);
-      }
-      to{
-        transform: rotate(360deg);
-      }
-    }
-
-    .splash{
-      position:absolute;
-      width:700px;
-      height:700px;
-      background: rgba(255,255,255,0.08);
-      border-radius:50%;
-      top:-250px;
-      right:-250px;
-    }
-
   </style>
 </head>
 <body>
 
-  <div class="ad-container">
+  <header>
+    <div class="logo">📚 My Smart School</div>
 
-    <div class="splash"></div>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#planner">Planner</a>
+      <a href="#countdown">Countdown</a>
+      <a href="#resources">Resources</a>
+    </nav>
+  </header>
 
-    <div class="text-section">
-      <div class="brand">MAZOE</div>
-      <h1>Orange<br>Crush</h1>
-      <p class="tagline">
-        Refresh your day with the bold citrus taste everyone loves!
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Welcome to <span>My Smart School</span></h1>
+
+      <p>
+        A modern student website designed to help learners stay organized,
+        productive, and prepared for success.
       </p>
 
-      <a href="#" class="btn">Taste the Crush</a>
+      <button class="btn" onclick="document.getElementById('countdown').scrollIntoView({behavior:'smooth'})">Explore Features</button>
     </div>
 
-    <div class="image-section">
-      <!-- Replace with actual Mazoe bottle image -->
-      <img 
-        class="bottle"
-        src="images/mazoe-orange.png"
-        alt="Mazoe Orange Crush"
-      >
+    <div class="hero-image">
+      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png" alt="Student">
+    </div>
+  </section>
 
-      <img 
-        class="orange orange1"
-        src="images/mazoe-orange.png"
-        alt="orange"
-      >
-
-      <img 
-        class="orange orange2"
-        src="images/mazoe-orange.png"
-        alt="orange"
-      >
+  <section id="features">
+    <div class="section-title">
+      <h2>Smart Features</h2>
     </div>
 
-  </div>
+    <div class="cards">
 
+      <div class="card">
+        <h3>📅 Timetable</h3>
+
+        <table>
+          <tr>
+            <th>Day</th>
+            <th>Subject</th>
+          </tr>
+
+          <tr>
+            <td>Monday</td>
+            <td>Mathematics</td>
+          </tr>
+
+          <tr>
+            <td>Tuesday</td>
+            <td>Science</td>
+          </tr>
+
+          <tr>
+            <td>Wednesday</td>
+            <td>English</td>
+          </tr>
+
+          <tr>
+            <td>Thursday</td>
+            <td>History</td>
+          </tr>
+
+          <tr>
+            <td>Friday</td>
+            <td>ICT</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="card">
+        <h3>📝 Homework Planner</h3>
+
+        <p>
+          Organize assignments and keep track of school tasks easily.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>⏰ Exam Countdown</h3>
+
+        <p>
+          Set your exam date and time to stay motivated with a live countdown timer.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="planner">
+
+    <div class="section-title">
+      <h2>Homework Planner</h2>
+    </div>
+
+    <div class="card planner">
+
+      <input type="text" id="taskInput" placeholder="Enter homework task">
+
+      <textarea id="taskDetails" rows="4" placeholder="Task details"></textarea>
+
+      <button onclick="addTask()">Add Homework</button>
+
+      <div class="task-list" id="taskList"></div>
+
+    </div>
+
+  </section>
+
+  <section id="countdown">
+
+    <div class="section-title">
+      <h2>Exam Countdown</h2>
+    </div>
+
+    <div class="card countdown">
+
+      <p id="currentExamLabel">Set your exam date and time below:</p>
+
+      <div class="countdown-box" id="timer">
+        ⏰ Set an exam date
+      </div>
+
+      <div class="date-picker">
+        <h4>📅 Customize Your Exam Countdown</h4>
+        
+        <div class="datetime-input-group">
+          <input type="date" id="examDatePicker">
+          <input type="time" id="examTimePicker">
+        </div>
+        
+        <button class="set-exam-btn" onclick="setCustomExamDate()">Set Exam Countdown</button>
+        
+        <div class="exam-info" id="examInfo">
+          No exam date set yet. Choose a date and time above!
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section id="resources">
+
+    <div class="section-title">
+      <h2>Helpful Student Resources</h2>
+    </div>
+
+    <div class="card resources">
+
+      <ul>
+        <li>
+          📘
+          <a href="https://www.khanacademy.org/" target="_blank">
+            Khan Academy
+          </a>
+          — Free learning videos and exercises.
+        </li>
+
+        <li>
+          📖
+          <a href="https://quizlet.com/" target="_blank">
+            Quizlet
+          </a>
+          — Flashcards and study tools.
+        </li>
+
+        <li>
+          💻
+          <a href="https://www.w3schools.com/" target="_blank">
+            W3Schools
+          </a>
+          — Learn coding and web development.
+        </li>
+
+        <li>
+          🔬
+          <a href="https://www.nationalgeographic.com/" target="_blank">
+            National Geographic
+          </a>
+          — Science and geography resources.
+        </li>
+      </ul>
+
+    </div>
+
+  </section>
+
+  <footer>
+    © 2026 My Smart School | Designed for School Competition 🌟
+  </footer>
+
+  <script>
+    // Global variable to store the selected exam date
+    let customExamDateTimestamp = null;
+
+    function addTask(){
+      const taskInput = document.getElementById("taskInput");
+      const taskDetails = document.getElementById("taskDetails");
+      const taskList = document.getElementById("taskList");
+
+      if(taskInput.value === ""){
+        alert("Please enter a homework task.");
+        return;
+      }
+
+      const task = document.createElement("div");
+      task.classList.add("task");
+
+      task.innerHTML = `
+        <strong>${taskInput.value}</strong>
+        <p>${taskDetails.value}</p>
+      `;
+
+      taskList.appendChild(task);
+
+      taskInput.value = "";
+      taskDetails.value = "";
+    }
+
+    // Function to set custom exam date and time
+    window.setCustomExamDate = function() {
+      const dateInput = document.getElementById("examDatePicker");
+      const timeInput = document.getElementById("examTimePicker");
+      const examInfo = document.getElementById("examInfo");
+
+      if (!dateInput.value) {
+        alert("Please select a date for your exam!");
+        return;
+      }
+
+      // Combine date and time
+      let dateTimeString = dateInput.value;
+      if (timeInput.value) {
+        dateTimeString += "T" + timeInput.value + ":00";
+      } else {
+        dateTimeString += "T00:00:00";
+      }
+
+      const selectedDate = new Date(dateTimeString);
+      
+      if (isNaN(selectedDate.getTime())) {
+        alert("Please select a valid date and time!");
+        return;
+      }
+
+      // Check if selected date is in the past
+      if (selectedDate.getTime() < Date.now()) {
+        alert("Please select a future date for your exam countdown!");
+        return;
+      }
+
+      customExamDateTimestamp = selectedDate.getTime();
+      
+      // Format the exam date for display
+      const formattedDate = selectedDate.toLocaleString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+      
+      examInfo.innerHTML = `🎯 Exam Countdown Active! Your exam is scheduled for: ${formattedDate}`;
+      
+      // Update the countdown label
+      document.getElementById("currentExamLabel").innerHTML = "⏳ Counting down to your exam:";
+    };
+
+    // Function to update the countdown timer
+    function updateCountdown() {
+      const timerElement = document.getElementById("timer");
+      
+      if (!customExamDateTimestamp) {
+        timerElement.innerHTML = "📅 Set your exam date above";
+        return;
+      }
+      
+      const now = new Date().getTime();
+      const distance = customExamDateTimestamp - now;
+      
+      if (distance <= 0) {
+        timerElement.innerHTML = "🎉 EXAMS HAVE STARTED! 🎉";
+        timerElement.style.color = "#dc2626";
+        document.getElementById("examInfo").innerHTML = "📚 Good luck on your exams! You've got this! 💪";
+        return;
+      }
+      
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      
+      timerElement.innerHTML = `
+        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+          <div><span style="font-size: 2.5rem;">${days}</span><br>Days</div>
+          <div><span style="font-size: 2.5rem;">${hours}</span><br>Hours</div>
+          <div><span style="font-size: 2.5rem;">${minutes}</span><br>Minutes</div>
+          <div><span style="font-size: 2.5rem;">${seconds}</span><br>Seconds</div>
+        </div>
+      `;
+      timerElement.style.color = "#7c3aed";
+    }
+
+    // Start the countdown timer (updates every second)
+    setInterval(updateCountdown, 1000);
+
+    // Set default date to a future date (optional: set a default exam date)
+    // Uncomment the line below to set a default exam date (e.g., December 1, 2026)
+    // setTimeout(() => {
+    //   const defaultDate = new Date("December 1, 2026 08:00:00");
+    //   customExamDateTimestamp = defaultDate.getTime();
+    //   document.getElementById("examInfo").innerHTML = `🎯 Default exam set for: ${defaultDate.toLocaleString()}`;
+    //   document.getElementById("currentExamLabel").innerHTML = "⏳ Counting down to your exam:";
+    // }, 100);
+  </script>
+
+  <script type="module" src="app.js"></script>
 </body>
 </html>
